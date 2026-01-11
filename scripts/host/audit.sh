@@ -76,7 +76,12 @@ else
     printf '  "user": "%s",\n' "$(whoami)"
     printf '  "git": "%s",\n' "$(git --version 2>/dev/null || echo not-available)"
     printf '  "docker": "%s",\n' "$(docker --version 2>/dev/null || echo not-available)"
-    printf '  "kubectl": "%s",\n' "$(kubectl version --client --short 2>/dev/null || echo not-available)"
+    if command -v kubectl >/dev/null 2>&1; then
+      kubectl_ver="$(kubectl version --client 2>/dev/null | tr '\n' ' ' | sed 's/"/\\"/g')"
+    else
+      kubectl_ver="not-available"
+    fi
+    printf '  "kubectl": "%s",\n' "$kubectl_ver"
     printf '  "tmux": "%s",\n' "$(tmux -V 2>/dev/null || echo not-available)"
     printf '  "go": "%s",\n' "$(go version 2>/dev/null || echo not-available)"
     printf '  "python": "%s",\n' "$(python3 --version 2>/dev/null || echo not-available)"
