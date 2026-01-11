@@ -1,0 +1,36 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Output / reports
+out/*
+!out/.gitkeep
+
+# Logs
+*.log
+tmux-client-*.log
+
+# Secrets / env
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+kubeconfig
+**/kubeconfig
+**/.kube/config
+**/.aws/*
+**/.ssh/*
+
+# Language build artifacts (future-proof)
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+dist/
+bin/
